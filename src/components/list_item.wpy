@@ -1,0 +1,57 @@
+/*
+ * @Author: linan 
+ * @Date: 2019-03-07 11:11:47 
+ * @Last Modified : 2019-03-07 11:11:47 
+ * @Desc  车次列表item
+*/
+<template>
+     <view class="parent">
+        <text>{{item}}</text>
+     </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class ListItem extends wepy.component {
+  props = {
+    title: String,
+    syncTitle: {
+      type: String,
+      default: 'null',
+      twoWay: true
+    }
+  };
+
+  data = {};
+
+  components = {};
+
+  methods = {};
+
+  events = {};
+
+  watch = {};
+
+  computed = {};
+
+  onLoad() {
+    console.log(this.title);
+    console.log(this.$parent.parentTitle);
+  }
+
+  onShow() {}
+}
+</script>
+
+<style lang='scss'>
+text {
+  font-size: 40rpx;
+  color: black;
+}
+.parent {
+  display: flex;
+  direction: columns;
+  border-bottom-color: red;
+  border-width: 1px;
+}
+</style>

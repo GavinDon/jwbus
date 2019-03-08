@@ -1,0 +1,18 @@
+@import "variable.scss";
+
+page {
+  background: $color-bg-body;
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  background: #ffffff;
+  font-size: 30rpx
+}
+
+text,
+view {
+  font-family: MicroSoft Yahei;
+  color: $color-normal;
+}

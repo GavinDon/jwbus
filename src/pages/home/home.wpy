@@ -1,0 +1,53 @@
+/*
+ * @Author: linan 
+ * @Date: 2019-03-06 12:55:06 
+ * @Last Modified : 2019-03-06 12:55:06 
+ * @Desc : 首页
+*/
+<template>
+    <view class='container'>
+
+
+   <!--  <repeat for="{{dataSource}}" key="index" index="index" item="item">
+      <ListItem :item="item" title="froma" :syncTitle.sync="parentTitle"></ListItem>
+    </repeat> -->
+
+    <HomeTab></HomeTab>
+    
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+import ListItem from '../../components/list_item';
+import HomeTab from '../../components/home_tab';
+export default class HomePage extends wepy.page {
+  config = {
+    navigationBarTitleText: '泾渭快线'
+  };
+
+  data = {
+    dataSource: ['title1', 'title2']
+  };
+
+  components = {
+    ListItem: ListItem,
+    HomeTab: HomeTab
+  };
+
+  methods = {};
+
+  events = {};
+
+  watch = {};
+
+  computed = {};
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='scss'>
+</style>

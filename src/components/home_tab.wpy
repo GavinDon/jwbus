@@ -1,0 +1,62 @@
+<!--  -->
+<template>
+  <view class='container'>
+      <view class= "tab_bg">
+          <view class="left">西安始发</view>
+          <view class="right">高陵始发</view>
+      </view>
+      <!-- tab 下划线 -->
+      <view class="tab_bottom">
+        <view></view>
+      </view>
+
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class HomeTab extends wepy.component {
+  props = {};
+
+  data = {};
+
+  components = {};
+
+  methods = {};
+
+  events = {};
+
+  watch = {};
+
+  computed = {};
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='scss'>
+.tab_bg {
+  margin-top: 30%;
+  display: flex;
+  text-align: center;
+  position: relative;
+  font-size: 30rpx;
+  color: black;
+  font-weight: 600;
+  .left {
+    flex: 1;
+    padding: 18rpx;
+  }
+  .right {
+    flex: 1;
+    padding: 18rpx;
+  }
+}
+.tab_bottom {
+  border: 2rpx solid black;
+  margin-left: 25%;
+}
+</style>

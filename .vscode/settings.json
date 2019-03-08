@@ -1,0 +1,41 @@
+{
+    "workbench.colorCustomizations": {
+        "[One Monokai]": {
+            "editor.background": "#2E2E2E",
+            "sideBar.background": "#2b2b2b",
+            "sideBar.foreground": "#999",
+            "sideBar.border": "#2b2b2b",
+            "list.inactiveSelectionBackground": "#32363d",
+            "list.inactiveSelectionForeground": "#dfdfdf",
+            "list.hoverBackground": "#32363d",
+            "list.hoverForeground": "#dfdfdf",
+            "peekView.border": "#5b99fc9c",
+            "tab.border": "#2e2e2e",
+            "tab.activeBackground": "#2e2e2e",
+            "tab.activeForeground": "#cfcfcf",
+            "tab.activeBorder": "#5b99fcb9",
+            "tab.hoverBackground": "#2e2e2e",
+            "tab.hoverBorder": "#5b99fcb9",
+            "tab.inactiveForeground": "#8e8e8e",
+            "activityBar.background": "#2e2e2e",
+            "statusBar.background": "#2a2a2a",
+            "panelTitle.activeBorder": "#5b99fc5b",
+            "panelTitle.activeForeground": "#cfcfcf",
+            "editorCursor.foreground": "#7bfc5bb9",
+            "editor.lineHighlightBackground": "#32363d",
+            "editorActiveLineNumber.foreground": "#9CA5B4",
+            "editorLineNumber.foreground": "#777",
+            "editorRuler.foreground": "#3f3f3f",
+            "editorSuggestWidget.highlightForeground": "#7bfc5ba2",
+            "editorSuggestWidget.selectedBackground": "#333f5c",
+            "editor.selectionHighlightBackground": "#ffe7921c",
+            "editor.selectionBackground": "#434e61c9",
+            "terminalCursor.foreground": "#7bfc5bb9",
+            "sideBarSectionHeader.background": "#32363d",
+            "focusBorder": "#5b99fc36"
+        },
+        "activityBar.background": "#4A1160",
+        "titleBar.activeBackground": "#681786",
+        "titleBar.activeForeground": "#FCF9FE"
+    }
+}
