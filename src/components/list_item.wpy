@@ -5,20 +5,24 @@
  * @Desc  车次列表item
 */
 <template>
-     <view class="parent">
-        <text>{{item}}</text>
-     </view>
+  <view class="parent">
+    <view class="left">
+      <text>早班车:{{data.startTime}}</text>
+      <text>末班车:{{data.endTime}}</text>
+      <text>总路程:{{data.totalDistance}}</text>
+      <text>总时间:{{data.totalTime}}</text>
+    </view>
+  </view>
 </template>
 
 <script>
 import wepy from 'wepy';
 export default class ListItem extends wepy.component {
+  /*  props 的值可以是两种， 一种是字符串数组，一种是对象。 */
   props = {
-    title: String,
-    syncTitle: {
-      type: String,
-      default: 'null',
-      twoWay: true
+    data: {
+      type: Object,
+      default: {}
     }
   };
 
@@ -34,24 +38,24 @@ export default class ListItem extends wepy.component {
 
   computed = {};
 
-  onLoad() {
-    console.log(this.title);
-    console.log(this.$parent.parentTitle);
-  }
+  onLoad() {}
 
   onShow() {}
 }
 </script>
 
 <style lang='scss'>
-text {
-  font-size: 40rpx;
-  color: black;
-}
+@import '../styles/variable';
 .parent {
   display: flex;
-  direction: columns;
-  border-bottom-color: red;
-  border-width: 1px;
+  padding: 8rpx;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.left > text {
+  font-size: $text-nm;
 }
 </style>

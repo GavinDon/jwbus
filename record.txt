@@ -1,0 +1,11 @@
+ props = {}//接收父组件传来的参数
+    customData = {}  // 自定义数据
+    customFunction ()　{}  //自定义方法
+    onLoad () {}  // 在Page和Component共用的生命周期函数
+    data = {};  // 页面所需数据均需在这里声明，可用于模板数据绑定
+    components = {};  // 声明页面中所引用的组件，或声明组件中所引用的子组件
+    mixins = [];  // 声明页面所引用的Mixin实例
+    computed = {};  // 声明计算属性（详见后文介绍）
+    watch = {};  // 声明数据watcher（详见后文介绍）
+    methods = {};  // 声明页面wxml中标签的事件处理函数。注意，此处只用于声明页面wxml中标签的bind、catch事件，自定义方法需以自定义方法的方式声明
+    events = {};  // WePY组件事件处理函数对象，存放响应组件之间通过$broadcast、$emit、$invoke所传递的事件的函数

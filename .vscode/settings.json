@@ -37,5 +37,7 @@
         "activityBar.background": "#4A1160",
         "titleBar.activeBackground": "#681786",
         "titleBar.activeForeground": "#FCF9FE"
-    }
+    },
+    "fileheader.Author": "linan",
+    "fileheader.LastModifiedBy": "linan"
 }

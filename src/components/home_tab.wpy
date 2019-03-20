@@ -46,15 +46,19 @@ export default class HomeTab extends wepy.component {
   font-size: 30rpx;
   color: black;
   font-weight: 600;
-  .left {
-    flex: 1;
-    padding: 18rpx;
-  }
-  .right {
-    flex: 1;
-    padding: 18rpx;
-  }
 }
+.left {
+    flex: 1;
+    padding: 18rpx;
+    display: flex;
+    justify-content:center;
+    align 
+  
+  }
+.right {
+    flex: 1;
+    padding: 18rpx;
+  }
 .tab_bottom {
   border: 2rpx solid black;
   margin-left: 25%;

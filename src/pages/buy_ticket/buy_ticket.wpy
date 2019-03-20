@@ -1,0 +1,71 @@
+<!--  -->
+<template>
+  <view class="container">
+    <view class="point">
+      <text>{{lineInfo.lineStartName}}</text>
+      <text>——</text>
+      <text>{{lineInfo.lineEndName}}</text>
+    </view>
+    <view class="date">
+      <text>{{test}}</text>
+      <van-icon class="arrow" name="arrow"/>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class BuyTicketPage extends wepy.page {
+  config = {
+    navigationBarTitleText: '选择日期',
+    usingComponents: {
+      'van-icon': '../../components/van/icon/index'
+    }
+  };
+
+  data = {
+    //线路信息
+    lineInfo: {},
+    test:
+      '02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日'
+  };
+
+  components = {};
+
+  methods = {};
+
+  events = {};
+
+  watch = {};
+
+  computed = {};
+
+  onLoad(options) {
+    let lineInfo = JSON.parse(options.lineInfo);
+    this.lineInfo = lineInfo;
+  }
+
+  onShow() {}
+}
+</script>
+
+<style lang='scss'>
+.point {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  border-bottom: 1px solid rgb(224, 218, 218);
+}
+.date {
+  display: flex;
+  position: relative;
+  padding: 20rpx;
+  .arrow {
+    position: absolute;
+    right: 0;
+  }
+  text {
+    flex: 1;
+  }
+}
+</style>
