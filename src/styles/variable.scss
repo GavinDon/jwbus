@@ -11,33 +11,29 @@ $color-primary-black: #2B2B2B;
 $color-primary-gray: #57585A;
 $color-primary-brown: #905537;
 $color-primary-purple: #A069D1;
-
 //******字体颜色变量******/
 $color-major: $color-primary-yellow;
 $color-primary: $color-primary-red;
 $color-primary-darken: darken($color-primary, 5%);
 $color-muted: #A3A3A3;
 $color-weak: #626E7A;
-$color-normal: #262626;
+$color-normal: #333;
 $color-danger: #e33;
 $color-warn: #f85;
-
 //******字体大小变量******/
 $text-xxl: 40rpx;
 $text-xl: 38rpx;
-$text-nm: 36rpx;
+$text-nm: 30rpx;
 $text-sm: 34rpx;
 $text-xs: 32rpx;
 $text-xxs: 30rpx;
 $text-form: 17px;
-
 //******边框样式******/
 $color-border: #EDEDED;
 $color-line: #EEEEEE;
 $border: 1px solid $color-border;
 $border-line: 1px solid $color-line;
 $border-dot: 1px dotted #EFF0F2;
-
 //******背景样式******/
 $color-bg-body: #F5F5F5;
 $color-bg-item: #FAFAFA;

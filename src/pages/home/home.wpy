@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <van-transition name="fade-up">
-      <van-collapse value="{{ activeNames }}" bind:change="onChange" accordion>
+      <van-collapse value="{{ activeNames }}" custom-class="add" bind:change="onChange" accordion>
         <repeat for="{{lineInfo}}" key="index" index="index" item="item">
           <van-collapse-item title="{{item.lineName}}" name="{{index}}">
             <view class="line-detail" @tap.stop="nextPage('{{item}}')">
@@ -93,6 +93,7 @@ export default class HomePage extends wepy.page {
   align-items: center;
   text {
     color: yellowgreen;
+    font-size: 30rpx;
   }
 }
 </style>
