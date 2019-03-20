@@ -27,7 +27,7 @@ export default class BuyTicketPage extends wepy.page {
     //线路信息
     lineInfo: {},
     test:
-      '02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日02月18日'
+      '02月18日'
   };
 
   components = {};
