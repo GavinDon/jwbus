@@ -3,12 +3,12 @@
   <view class="container">
     <view class="point">
       <text>{{lineInfo.lineStartName}}</text>
-      <text>——</text>
+      <icon class="iconfont icon-zhuanhuan" size="36"></icon>
       <text>{{lineInfo.lineEndName}}</text>
     </view>
     <view class="date">
+      <icon class="arrow iconfont icon-arrow-rignht"></icon>
       <text>{{test}}</text>
-      <van-icon class="arrow" name="arrow"/>
     </view>
   </view>
 </template>
@@ -18,16 +18,13 @@ import wepy from 'wepy';
 export default class BuyTicketPage extends wepy.page {
   config = {
     navigationBarTitleText: '选择日期',
-    usingComponents: {
-      'van-icon': '../../components/van/icon/index'
-    }
+    usingComponents: {}
   };
 
   data = {
     //线路信息
     lineInfo: {},
-    test:
-      '02月18日'
+    test: '02月18日02月18日02月18日'
   };
 
   components = {};
@@ -52,20 +49,20 @@ export default class BuyTicketPage extends wepy.page {
 <style lang='scss'>
 .point {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 20rpx 0;
   border-bottom: 1px solid rgb(224, 218, 218);
 }
 .date {
-  display: flex;
-  position: relative;
-  padding: 20rpx;
-  .arrow {
-    position: absolute;
-    right: 0;
-  }
-  text {
-    flex: 1;
-  }
+  padding: 30rpx 20rpx;
+  overflow: hidden;
+  box-sizing: border-box; /* 从右边开始布局 使用float破坏block */
+}
+.arrow {
+  display: table-cell;
+  float: right;
+  padding: 0;
+  margin-left: 10rpx;
+  vertical-align: middle;
 }
 </style>

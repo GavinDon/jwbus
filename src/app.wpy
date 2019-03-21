@@ -1,5 +1,6 @@
 <style lang='sass'>
 @import './styles/base.scss';
+@import './styles/icon'
 </style>
 
 <script>
