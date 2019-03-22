@@ -1,9 +1,9 @@
 <!--  -->
 <template>
   <view class="container">
-    <view class="point">
+    <view class="point divider">
       <text>{{lineInfo.lineStartName}}</text>
-      <icon class="iconfont icon-zhuanhuan" size="36"></icon>
+      <text class="iconfont icon-zhuanhuan icon-translater"></text>
       <text>{{lineInfo.lineEndName}}</text>
     </view>
     <view class="date">
@@ -49,9 +49,16 @@ export default class BuyTicketPage extends wepy.page {
 <style lang='scss'>
 .point {
   display: flex;
-  justify-content: space-between;
-  padding: 20rpx 0;
-  border-bottom: 1px solid rgb(224, 218, 218);
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  text {
+    font-weight: bold;
+  }
+}
+.icon-translater {
+  margin: 0 40rpx;
 }
 .date {
   padding: 30rpx 20rpx;

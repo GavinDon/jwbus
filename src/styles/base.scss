@@ -16,3 +16,19 @@ view {
   font-family: MicroSoft Yahei;
   color: $color-normal;
 }
+
+.divider {
+  border-bottom: $border-line
+}
+
+.text-large {
+  font-size: $text-xl
+}
+
+.text-nm {
+  font-size: $text-nm
+}
+
+.text-sm {
+  font-size: $text-sm
+}

@@ -20,17 +20,16 @@ $color-weak: #626E7A;
 $color-normal: #333;
 $color-danger: #e33;
 $color-warn: #f85;
+$color-divider: #FCF7F7;
+
 //******字体大小变量******/
-$text-xxl: 40rpx;
-$text-xl: 38rpx;
-$text-nm: 30rpx;
-$text-sm: 34rpx;
-$text-xs: 32rpx;
-$text-xxs: 30rpx;
-$text-form: 17px;
+$text-xl: 34rpx;
+$text-nm: 32rpx;
+$text-sm: 30rpx;
+$text-xs: 28rpx;
 //******边框样式******/
 $color-border: #EDEDED;
-$color-line: #EEEEEE;
+$color-line: #FCF7F7;
 $border: 1px solid $color-border;
 $border-line: 1px solid $color-line;
 $border-dot: 1px dotted #EFF0F2;

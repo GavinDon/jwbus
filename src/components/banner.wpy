@@ -1,0 +1,64 @@
+<!--  -->
+<template>
+      <swiper indicator-dots autoplay circular duration="{{control.duration}}" bindchange="swiperOnChange">
+          <repeat for="{{source}}" key="index" index="index" item="item">
+              <swiper-item>
+                  <image class="img-item" mode="widthFix" src="{{item}}"></image>
+              </swiper-item>
+          </repeat>
+      </swiper>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class Banner extends wepy.component {
+    props = {
+        //图片源地址
+        source:{
+            type:Array,
+            default:[]
+        },
+        //控制轮播图参数
+        control:{
+            type:Object,
+        }
+    };
+
+    data = {
+    };
+
+    components = {
+     
+    };
+
+    methods = {
+      swiperOnChange(event){
+      let e = event.detail.current
+      console.log('position=',e);
+        this.$emit('getPosition',e)
+        }
+    };
+
+    events = {
+    };
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() { };
+
+    onShow() { };
+  }
+</script>
+
+<style lang='scss'>
+.img-item{
+    width: 100%;
+    height: 100%;
+}
+swiper{
+    width: 100%;
+    height: 200rpx;
+}
+</style>

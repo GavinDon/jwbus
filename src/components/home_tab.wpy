@@ -1,16 +1,14 @@
 <!--  -->
 <template>
-  <view class='container'>
-      <view class= "tab_bg">
-          <view class="left">西安始发</view>
-          <view class="right">高陵始发</view>
-      </view>
-      <!-- tab 下划线 -->
-      <view class="tab_bottom">
-        <view></view>
-      </view>
-
-
+  <view class="container">
+    <view class="tab_bg">
+      <view class="left">西安始发</view>
+      <view class="right">高陵始发</view>
+    </view>
+    <!-- tab 下划线 -->
+    <view class="tab_bottom">
+      <view></view>
+    </view>
   </view>
 </template>
 
@@ -48,17 +46,16 @@ export default class HomeTab extends wepy.component {
   font-weight: 600;
 }
 .left {
-    flex: 1;
-    padding: 18rpx;
-    display: flex;
-    justify-content:center;
-    align 
-  
-  }
+  flex: 1;
+  padding: 18rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .right {
-    flex: 1;
-    padding: 18rpx;
-  }
+  flex: 1;
+  padding: 18rpx;
+}
 .tab_bottom {
   border: 2rpx solid black;
   margin-left: 25%;

@@ -1,17 +1,16 @@
 <template>
   <view class="container">
-    <van-transition name="fade-up">
-      <van-collapse value="{{ activeNames }}" custom-class="add" bind:change="onChange" accordion>
-        <repeat for="{{lineInfo}}" key="index" index="index" item="item">
-          <van-collapse-item title="{{item.lineName}}" name="{{index}}">
-            <view class="line-detail" @tap.stop="nextPage('{{item}}')">
-              <text>起:{{item.lineStartName}}——终:{{item.lineEndName}}</text>
-              <text>早班:{{item.lineEarlyTime}}——晚班:{{item.lineEndTime}}</text>
-            </view>
-          </van-collapse-item>
-        </repeat>
-      </van-collapse>
-    </van-transition>
+    <banner :source="bannerSrc" :control="control"></banner>
+    <van-collapse value="{{ activeNames }}" custom-class="add" bind:change="onChange" accordion>
+      <repeat for="{{lineInfo}}" key="index" index="index" item="item">
+        <van-collapse-item title="{{item.lineName}}" name="{{index}}">
+          <view class="line-detail" @tap.stop="nextPage('{{item}}')">
+            <text>起:{{item.lineStartName}}——终:{{item.lineEndName}}</text>
+            <text>早班:{{item.lineEarlyTime}}——晚班:{{item.lineEndTime}}</text>
+          </view>
+        </van-collapse-item>
+      </repeat>
+    </van-collapse>
   </view>
 </template>
 
@@ -19,6 +18,7 @@
 import wepy from 'wepy';
 import ListItem from '../../components/list_item';
 import api from '../../http/api';
+import Banner from '../../components/banner';
 export default class HomePage extends wepy.page {
   config = {
     navigationBarTitleText: '购票',
@@ -33,11 +33,24 @@ export default class HomePage extends wepy.page {
     lineInfo: [],
     //默认展开的索引
     activeNames: 0,
-    content3: '线上拓客，随时预约，贴心顺手的开单收银'
+    content3: '线上拓客，随时预约，贴心顺手的开单收银',
+    bannerSrc: [
+      './../../images/banner1.jpg',
+      './../../images/banner2.jpg',
+      './../../images/banner3.jpg'
+    ],
+    control: {
+      //自动切换时间间隔
+      interval: 5000,
+      //滑动动画时长
+      duration: 3000,
+      current: 0
+    }
   };
 
   components = {
-    listitem: ListItem
+    listitem: ListItem,
+    banner: Banner
   };
 
   methods = {
@@ -50,7 +63,11 @@ export default class HomePage extends wepy.page {
       wepy.navigateTo({ url: '../buy_ticket/buy_ticket?lineInfo=' + lineInfo });
     }
   };
-  events = {};
+  events = {
+    getPosition(e) {
+      console.log('emit=', e);
+    }
+  };
 
   watch = {};
 

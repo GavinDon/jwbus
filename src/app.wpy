@@ -51,10 +51,11 @@ export default class extends wepy.app {
   };
 
   globalData = {
-    userInfo: null
+    userInfo: null,
   };
   constructor() {
     super();
+    this.use('requestfix');
     this.use('promisify');
     this.intercept('request', {
       // 发出请求时的回调函数

@@ -32,11 +32,11 @@
             "editor.selectionBackground": "#434e61c9",
             "terminalCursor.foreground": "#7bfc5bb9",
             "sideBarSectionHeader.background": "#32363d",
-            "focusBorder": "#5b99fc36"
+            "focusBorder": "#5b99fc36" 
         },
-        "activityBar.background": "#4A1160",
-        "titleBar.activeBackground": "#681786",
-        "titleBar.activeForeground": "#FCF9FE"
+        // "activityBar.background": "#4A1160",
+        // "titleBar.activeBackground": "#681786",
+        // "titleBar.activeForeground": "#FCF9FE"
     },
     "fileheader.Author": "linan",
     "fileheader.LastModifiedBy": "linan"
