@@ -1,0 +1,32 @@
+<!-- 服务条款 -->
+<template>
+  <view class='container'></view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class TermsOfServicePage extends wepy.page {
+    config = {
+      navigationBarTitleText: "服务条款",
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {};
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() { };
+
+    onShow() { };
+  }
+</script>
+
+<style lang='scss'>
+</style>

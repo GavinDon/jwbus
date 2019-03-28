@@ -1,23 +1,137 @@
 <style lang='scss'>
+  .avatar-view {
+    padding: 30rpx;
+    display: flex;
+  }
+
+  .userinfo-avatar {
+    display: block;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .userinfo-nick {
+    display: flex;
+    height: 160rpx;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30rpx;
+
+    open-data {
+      font-weight: bold;
+    }
+
+    text {
+      color: #A3A3A3;
+      margin-top: 10rpx
+    }
+  }
+
+  .horizatal {
+    display: flex;
+    height: 180rpx;
+    align-items: center;
+    width: 100%;
+
+    >view {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+
+      /* 使用伪类的话 */
+      :first-child {
+        font-weight: 550;
+      }
+
+      :last-child {
+        margin-top: 10rpx;
+        color: #A3A3A3;
+        font-weight: lighter;
+      }
+    }
+  }
+
 </style>
 <template>
   <view class='container'>
-    <text>上</text>
+    <!-- 微信头像昵称，手机号信息 -->
+    <view class="avatar-view">
+      <view class="userinfo-avatar">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="userinfo-nick">
+        <open-data type="userNickName"></open-data>
+        <text>hello</text>
+      </view>
+    </view>
+    <!-- 订单,车票等信息 -->
+    <view class="horizatal">
+      <view>
+        <view>我的订单</view>
+        <view>20</view>
+      </view>
+      <view>
+        <view>我的车票</view>
+        <view>20</view>
+      </view>
+      <view>
+        <view>全部积分</view>
+        <view>20</view>
+      </view>
+    </view>
+    <!-- item -->
+    <repeat for="{{itemData}}" key="index" index="index" item="item">
+      <navigator url="{{item.url}}" open-type="navigate">
+        <useritem :data.sync="item"></useritem>
+      </navigator>
+    </repeat>
+
   </view>
 </template>
 
 <script>
-  import wepy from 'wepy'
-  export default class Example extends wepy.page {
+  import wepy from 'wepy';
+  import UserItem from '../../components/user_item'
+
+  export default class MinePage extends wepy.page {
     config = {
-      navigationBarTitleText: '个人中心'
+      navigationBarTitleText: '个人中心',
     };
 
-    data = {};
+    data = {
+      canIUse: wx.canIUse('button.open-type.getUserInfo'),
+      userInfo: {},
+      itemData: [{
+        icon: 'icon-user',
+        name: '个人信息',
+        url: './info'
+      }, {
+        icon: 'icon-tousu',
+        name: '投诉建议',
+        url: './suggest'
+      }, {
+        icon: 'icon-fuwutiaokuan',
+        name: '服务条款',
+        url: './tos'
+      }, {
+        icon: 'icon-guanyu',
+        name: '关于我们',
+        url: './about'
+      }]
+    };
 
-    components = {};
+    components = {
+      useritem: UserItem
+    };
 
-    methods = {};
+    methods = {
+
+    };
 
     events = {};
 
@@ -25,8 +139,9 @@
 
     computed = {};
 
-    onLoad() { };
+    onLoad() {};
 
-    onShow() { };
+    onShow() {};
   }
+
 </script>

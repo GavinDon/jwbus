@@ -21,7 +21,7 @@ import api from '../../http/api';
 import Banner from '../../components/banner';
 export default class HomePage extends wepy.page {
   config = {
-    navigationBarTitleText: '购票',
+    navigationBarTitleText: '首页',
     usingComponents: {
       'van-collapse': '../../components/van/collapse/index',
       'van-collapse-item': '../../components/van/collapse-item/index',

@@ -1,0 +1,62 @@
+<!-- 个人中心列表 item -->
+<style lang='scss'>
+  .wrap {
+    display: block;
+    padding: 30rpx 0;
+    margin: 0 30rpx;
+    border-bottom: 1px solid #FCF7F7;
+  }
+
+  .name {
+    margin: 20rpx
+  }
+
+  .arrow {
+    position: absolute;
+    right: 20rpx;
+  }
+
+</style>
+<template>
+  <view class="wrap">
+    <text class="iconfont {{data.icon}}"></text>
+    <text class="name">{{data.name}}</text>
+    <text>{{data.content}}</text>
+    <text class="iconfont icon-arrow-rignht arrow"></text>
+
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class UserItem extends wepy.component {
+    props = {
+      data: {
+        type: Object,
+        default: {
+          icon: 'icon-arrow-rignht',
+          name: '个人信息',
+          content: ''
+        }
+
+      }
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {};
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() {};
+
+    onShow() {};
+  }
+
+</script>

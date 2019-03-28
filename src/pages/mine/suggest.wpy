@@ -1,0 +1,32 @@
+<!-- 投诉建议 -->
+<template>
+  <view class='container'></view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class SuggestPage extends wepy.page {
+    config = {
+      navigationBarTitleText: "投诉建议",
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {};
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() { };
+
+    onShow() { };
+  }
+</script>
+
+<style lang='scss'>
+</style>

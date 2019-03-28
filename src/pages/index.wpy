@@ -1,0 +1,156 @@
+<!--绑定手机号  -->
+<style lang='scss'>
+  .container-bg {
+    background-color: white;
+    height: 100%
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+  }
+
+  .avatar {
+    width: 128rpx;
+    height: 128rpx;
+    border-radius: 50%
+  }
+
+  .top text {
+    font-size: 32rpx;
+    margin-top: 20rpx
+  }
+
+  .input-phone {
+    margin: 20rpx;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .active {
+    border-bottom: 1px solid red;
+  }
+
+  .btn {
+    margin: 50rpx 20rpx;
+    border-radius: 1px;
+  }
+
+</style>
+<template>
+  <view class="container container-bg">
+    <view class="top">
+      <image class="avatar" src="{{imgSrc}}" mode="widthFix"></image>
+      <text>泾渭快线</text>
+    </view>
+    <view class="input-phone {{focus? 'active':''}}">
+      <input placeholder="请绑定手机号码" bindinput='bindInput' bindblur="bindBlur" type="number" maxlength='11'
+        confirm-type='done'>
+    </view>
+
+    <!-- 需要使用 button 来授权登录 -->
+    <button class="btn" disabled='{{disabled}}' wx:if="{{canIUse}}" open-type="getUserInfo"
+      bindgetuserinfo="bindGetUserInfo" @tap="bindPhone" lang="zh_CN">
+      授权登录
+    </button>
+    <view wx:else>请升级微信版本</view>
+
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class IndexPage extends wepy.page {
+    config = {
+      navigationBarTitleText: ''
+    };
+
+    data = {
+      imgSrc: '../images/app_logo.png',
+      phone: '',
+      disabled: true,
+      focus: false,
+      canIUse: wx.canIUse('button.open-type.getUserInfo')
+    };
+
+    components = {};
+
+    methods = {
+      bindInput(e) {
+        this.phone = e.detail.value
+        this.disabled = this.phone.length != 11
+        this.focus = true
+
+      },
+      bindBlur(e) {
+        this.focus = false
+      },
+      bindPhone() {
+        const isbindPhone = wepy.setStorageSync(
+          this.$parent.globalData.isBindPhone,
+          true
+        );
+        wepy.switchTab({
+          url: './home/home'
+        });
+      },
+      bindGetUserInfo() {
+        let that = this
+        wepy.getSetting({
+          success: res => {
+            if (!res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                withCredentials: false,
+                success: res => {
+                  that.bindPhone()
+                  console.log(res.userInfo)
+                },
+                fail: (err) => {
+                  console.log(err)
+                },
+                complete: () => {}
+              });
+            }
+          }
+        });
+      },
+      bindAlbum() {
+        wepy.getSetting({
+          success: res => {
+            if (!res.authSetting['scope.writePhotosAlbum']) {
+              wepy.authorize({
+                scope: 'scope.writePhotosAlbum',
+                success: res => {
+                  console.log(res);
+
+                },
+                fail: (err) => {
+                  console.log(err);
+                },
+                complete: () => {}
+              });
+            }
+          }
+        });
+      }
+    };
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() {
+
+
+    }
+
+    onShow() {
+
+    }
+  }
+
+</script>

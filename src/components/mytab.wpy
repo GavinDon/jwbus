@@ -1,0 +1,82 @@
+<!--  -->
+<template>
+  <view class="tab_bg">
+    <repeat for="{{tabData}}" key="index" index="index" item="item">
+      <view data-index="{{index}}" @tap="tabHandle">
+        <text class="{{index ==currentIndex ? 'bold':''}}">{{item}}</text>
+        <text class="{{index ==currentIndex ? 'tab_bottom':''}}"></text>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class MyTab extends wepy.component {
+    props = {
+      /* 默认为0时 第一次进入没有下横线效果 */
+      currentIndex: 1,
+      tabData: {
+        type: Array,
+        default: [],
+        twoWay: true
+      },
+
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {
+      tabHandle(e) {
+        let curr = e.currentTarget.dataset.index
+        this.$emit('updateTabIndex', curr)
+      }
+    };
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() {}
+
+    onShow() {
+      console.log("current=", this.currentIndex);
+
+    }
+  }
+
+</script>
+
+<style lang='scss'>
+  .tab_bg {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    font-size: 30rpx;
+    font-weight: 600;
+    padding: 30rpx 0;
+
+    >view {
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+  }
+
+  .tab_bottom {
+    height: 2px;
+    width: 50rpx;
+    background-color: red;
+  }
+
+  .bold {
+    font-weight: bold;
+    color: red;
+    font-size: 34rpx
+  }
+
+</style>

@@ -1,37 +1,66 @@
 /*
- * @Author: linan 
- * @Date: 2019-03-06 14:19:17 
- * @Last Modified : 2019-03-06 14:19:17 
- * @Desc : 展示车票二维码  
+* @Author: linan
+* @Date: 2019-03-06 14:19:17
+* @Last Modified : 2019-03-06 14:19:17
+* @Desc : 展示车票二维码
 */
 
 <template>
-  <view class='container'></view>
+  <view class='container'>
+    <tab :tabData.sync="tabData" :currentIndex.sync="currentTab"></tab>
+    <swiper bindchange="tabChange" current="{{currentTab}}">
+      <block wx:for="{{tabData}}" wx:key="index">
+        <swiper-item>
+          <text style="height:100%">hello{{index}}</text>
+        </swiper-item>
+      </block>
+    </swiper>
+
+  </view>
 </template>
 
 <script>
-import wepy from 'wepy';
-export default class Example extends wepy.page {
-  config = {
-    navigationBarTitleText: ''
-  };
+  import wepy from 'wepy';
+  import MyTab from '../../components/mytab'
+  export default class TicketPage extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的车票'
+    };
 
-  data = {};
+    data = {
+      currentTab: 0,
+      tabData: ['未使用', '历史车票']
+    };
 
-  components = {};
+    components = {
+      tab: MyTab
+    };
 
-  methods = {};
+    methods = {
+      /* swiper滑动时改变current */
+      tabChange(e) {
+        this.currentTab = e.detail.current
+      },
 
-  events = {};
+    };
 
-  watch = {};
+    events = {
+      /* 点击tab时改变当前currentTab值 */
+      updateTabIndex(index) {
+        this.currentTab = index
+        this.$apply()
+      }
+    };
 
-  computed = {};
+    watch = {};
 
-  onLoad() {}
+    computed = {};
 
-  onShow() {}
-}
+    onLoad() {}
+
+    onShow() {}
+  }
+
 </script>
 
 <style lang='scss'>

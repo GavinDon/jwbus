@@ -1,0 +1,32 @@
+<!-- 用户信息 -->
+<template>
+  <view class='container'></view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  export default class UserInfoPage extends wepy.page {
+    config = {
+      navigationBarTitleText: "个人信息",
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {};
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() { };
+
+    onShow() { };
+  }
+</script>
+
+<style lang='scss'>
+</style>
