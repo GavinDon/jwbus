@@ -55,7 +55,6 @@
   .tab_bg {
     display: flex;
     justify-content: space-around;
-    position: relative;
     font-size: 30rpx;
     font-weight: 600;
     padding: 30rpx 0;
@@ -75,7 +74,7 @@
 
   .bold {
     font-weight: bold;
-    color: red;
+    color: black;
     font-size: 34rpx
   }
 

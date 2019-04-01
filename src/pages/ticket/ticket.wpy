@@ -6,22 +6,37 @@
 */
 
 <template>
-  <view class='container'>
+  <view class="container">
     <tab :tabData.sync="tabData" :currentIndex.sync="currentTab"></tab>
-    <swiper bindchange="tabChange" current="{{currentTab}}">
+    <swiper style="height:{{swiperHeight}}" bindchange="tabChange" current="{{currentTab}}">
       <block wx:for="{{tabData}}" wx:key="index">
         <swiper-item>
-          <text style="height:100%">hello{{index}}</text>
+          <scroll-view scroll-y scroll-with-animation enable-back-to-top @scrolltolower="onReachBottom">
+            <repeat wx:for="{{unUsedTicket}}" key="index" index="index" item="item">
+              <view class="card">
+                <view class="title">
+                  <text>出发时间:2019-5-14 18:30</text>
+                </view>
+                <view class="dash"></view>
+                <view class="direction">
+                  <text class="bold">{{item.startPoint}}</text>
+                  <text class="iconfont icon-bus"></text>
+                  <text class="bold">{{item.endPoint}}</text>
+                </view>
+              </view>
+            </repeat>
+            <bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>
+          </scroll-view>
         </swiper-item>
       </block>
     </swiper>
-
   </view>
 </template>
 
 <script>
   import wepy from 'wepy';
-  import MyTab from '../../components/mytab'
+  import MyTab from '../../components/mytab';
+  import BottomLoadMore from '../../components/bottomLoadMore';
   export default class TicketPage extends wepy.page {
     config = {
       navigationBarTitleText: '我的车票'
@@ -29,39 +44,141 @@
 
     data = {
       currentTab: 0,
-      tabData: ['未使用', '历史车票']
+      swiperHeight: '0',
+      showLoading: true,
+      tabData: ['未使用', '历史车票'],
+      unUsedTicket: [{
+          startPoint: '比亚迪',
+          endPoint: '龙首原'
+        },
+        {
+          startPoint: '唯品会',
+          endPoint: '车城'
+        },
+        {
+          startPoint: '唯品会',
+          endPoint: '车城'
+        },
+        {
+          startPoint: '唯品会',
+          endPoint: '车城'
+        },
+        {
+          startPoint: '唯品会',
+          endPoint: '车城'
+        },
+
+      ],
+      usedTicket: [{
+        startPoint: '比亚迪',
+        endPoint: '龙首原'
+      }, ]
     };
 
     components = {
-      tab: MyTab
+      tab: MyTab,
+      bottomLoadMore: BottomLoadMore
     };
 
     methods = {
       /* swiper滑动时改变current */
       tabChange(e) {
-        this.currentTab = e.detail.current
-      },
-
+        this.currentTab = e.detail.current;
+      }
     };
 
     events = {
       /* 点击tab时改变当前currentTab值 */
       updateTabIndex(index) {
-        this.currentTab = index
-        this.$apply()
+        this.currentTab = index;
+        this.$apply();
       }
     };
 
     watch = {};
 
     computed = {};
+    computedHeight() {
+      let that = this
+      const query = wx.createSelectorQuery()
+      query.select('.card').boundingClientRect(function (res) {
+        that.swiperHeight = that.currentTab == 0 ? (res.height + 10) * that.unUsedTicket.length + 1 + 'px' :
+          (res.height + 10) * that.usedTicket.length + 1 + 'px'
+        that.$apply();
+      }).exec()
+    }
+    onLoad() {
 
-    onLoad() {}
+    }
+    getRepeatHeight() {
 
-    onShow() {}
+    }
+
+    onShow() {
+      this.computedHeight()
+    }
+
+    onReachBottom() {
+      console.log("hello");
+
+    }
   }
 
 </script>
 
 <style lang='scss'>
+  .card {
+    border: 1px solid #EDEDED;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-bottom: 0rpx;
+    border-radius: 5rpx;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.3);
+
+  }
+
+  /*  .card:after,
+  .card:before {
+    position: absolute;
+    content: "";
+    z-index: -2;
+    width: 325px;
+    height: 220px;
+    left: 22px;
+    bottom: 13px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.9);
+    transform: skew(15deg) rotate(5deg);
+  }
+ */
+
+
+  .title {
+    display: flex;
+    padding: 20rpx 10rpx;
+  }
+
+  .dash {
+    height: 0;
+    border-bottom: 1px dashed #EDEDED;
+  }
+
+  .direction {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 10rpx;
+
+    .bus {
+      margin: 0 30rpx;
+    }
+
+    text {
+      flex: 1;
+      text-align: center
+    }
+
+  }
+
 </style>

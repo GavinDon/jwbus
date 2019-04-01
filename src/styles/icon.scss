@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 1099829 */
-  src: url('//at.alicdn.com/t/font_1099829_i5b0cqgi2l.eot');
-  src: url('//at.alicdn.com/t/font_1099829_i5b0cqgi2l.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1099829_i5b0cqgi2l.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1099829_i5b0cqgi2l.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1099829_i5b0cqgi2l.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1099829_i5b0cqgi2l.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1099829_kwlhbyxnase.eot');
+  src: url('//at.alicdn.com/t/font_1099829_kwlhbyxnase.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1099829_kwlhbyxnase.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1099829_kwlhbyxnase.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1099829_kwlhbyxnase.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1099829_kwlhbyxnase.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -43,4 +43,10 @@
 
 .icon-user:before {
   content: "\e63c";
+}
+
+.icon-bus::before {
+  content: "\e616";
+  color: burlywood;
+  font-size: 48rpx
 }
