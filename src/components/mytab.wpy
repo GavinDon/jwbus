@@ -30,7 +30,14 @@
 
     methods = {
       tabHandle(e) {
+        let that = this
         let curr = e.currentTarget.dataset.index
+        if (this.currentIndex == curr) {
+          return false
+        } else {
+          that.currentIndex = curr
+          that.$apply()
+        }
         this.$emit('updateTabIndex', curr)
       }
     };
@@ -41,7 +48,9 @@
 
     computed = {};
 
-    onLoad() {}
+    onLoad() {
+
+    }
 
     onShow() {
       console.log("current=", this.currentIndex);
@@ -62,20 +71,33 @@
     >view {
       display: flex;
       flex-direction: column;
-      align-items: center
+      align-items: center;
+      position: relative;
     }
   }
 
   .tab_bottom {
     height: 2px;
     width: 50rpx;
-    background-color: red;
+    background-color: black;
   }
 
   .bold {
     font-weight: bold;
     color: black;
     font-size: 34rpx
+  }
+
+  .swiper-item-box {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .swiper-box {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 
 </style>

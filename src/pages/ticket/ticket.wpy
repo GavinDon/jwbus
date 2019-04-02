@@ -7,12 +7,13 @@
 
 <template>
   <view class="container">
-    <tab :tabData.sync="tabData" :currentIndex.sync="currentTab"></tab>
-    <swiper style="height:{{swiperHeight}}" bindchange="tabChange" current="{{currentTab}}">
+    <tab class="scroll" :tabData.sync="tabData" :currentIndex.sync="currentTab"></tab>
+    <swiper style="height:{{scrollHeight}}" circular bindchange="tabChange" current="{{currentTab}}">
       <block wx:for="{{tabData}}" wx:key="index">
         <swiper-item>
-          <scroll-view scroll-y scroll-with-animation enable-back-to-top @scrolltolower="onReachBottom">
-            <repeat wx:for="{{unUsedTicket}}" key="index" index="index" item="item">
+          <scroll-view style="overflow-y: scroll; height:100vh; margin-bottom:40rpx;" enable-back-to-top scroll-y
+            bindscrolltolower=" onReachBottom" bindscroll='onScroll'>
+            <block wx:for="{{currentTab==0? unUsedTicket: usedTicket}}" wx:key="index" index="index" item="item">
               <view class="card">
                 <view class="title">
                   <text>出发时间:2019-5-14 18:30</text>
@@ -24,18 +25,22 @@
                   <text class="bold">{{item.endPoint}}</text>
                 </view>
               </view>
-            </repeat>
+            </block>
+            <placeHolder :show.sync="is_empty" message="暂无车票信息"></placeHolder>
             <bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>
+
           </scroll-view>
         </swiper-item>
       </block>
     </swiper>
+
   </view>
 </template>
 
 <script>
   import wepy from 'wepy';
   import MyTab from '../../components/mytab';
+  import PlaceHolder from '../../components/placeHolder'
   import BottomLoadMore from '../../components/bottomLoadMore';
   export default class TicketPage extends wepy.page {
     config = {
@@ -43,41 +48,21 @@
     };
 
     data = {
+      windowHeight: 0,
       currentTab: 0,
-      swiperHeight: '0',
-      showLoading: true,
+      tabHeight: '0',
+      scrollHeight: 150,
+      showLoading: false,
+      is_empty: true,
       tabData: ['未使用', '历史车票'],
-      unUsedTicket: [{
-          startPoint: '比亚迪',
-          endPoint: '龙首原'
-        },
-        {
-          startPoint: '唯品会',
-          endPoint: '车城'
-        },
-        {
-          startPoint: '唯品会',
-          endPoint: '车城'
-        },
-        {
-          startPoint: '唯品会',
-          endPoint: '车城'
-        },
-        {
-          startPoint: '唯品会',
-          endPoint: '车城'
-        },
-
-      ],
-      usedTicket: [{
-        startPoint: '比亚迪',
-        endPoint: '龙首原'
-      }, ]
+      unUsedTicket: [],
+      usedTicket: []
     };
 
     components = {
       tab: MyTab,
-      bottomLoadMore: BottomLoadMore
+      bottomLoadMore: BottomLoadMore,
+      placeHolder: PlaceHolder
     };
 
     methods = {
@@ -100,33 +85,88 @@
     computed = {};
     computedHeight() {
       let that = this
+      /* 获取tabBar高度 */
       const query = wx.createSelectorQuery()
-      query.select('.card').boundingClientRect(function (res) {
-        that.swiperHeight = that.currentTab == 0 ? (res.height + 10) * that.unUsedTicket.length + 1 + 'px' :
-          (res.height + 10) * that.usedTicket.length + 1 + 'px'
+      query.select('.scroll ').boundingClientRect(function (res) {
+        that.tabHeight = res.height
+        /*获取窗口大小 */
+        wx.getSystemInfo({
+          success(res) {
+            that.windowHeight = res.windowHeight
+            /* scorllview的高度必须设置否则srorll回调无效。且滚动事件是整个page */
+            that.scrollHeight = res.windowHeight - that.tabHeight - res.statusBarHeight + 'px'
+          }
+        })
         that.$apply();
+      }).exec()
+      const query1 = wx.createSelectorQuery().in(this)
+      query1.select('.tab_bg').boundingClientRect(function (res) {
+        console.log('res=', res);
       }).exec()
     }
     onLoad() {
-
-    }
-    getRepeatHeight() {
-
-    }
-
-    onShow() {
+      let that = this
       this.computedHeight()
-    }
+      this.reqTicketData()
 
+    }
+    reqTicketData() {
+      this.unUsedTicket = [{
+        startPoint: '比亚迪',
+        endPoint: '龙首原'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }, {
+        startPoint: '唯品会',
+        endPoint: '车城'
+      }]
+
+
+
+    }
+    onShow() {}
     onReachBottom() {
-      console.log("hello");
 
     }
+    onScroll(e) {
+      console.log("onscroll");
+      console.log(e.detail.deltaY);
+      if (e.detail.deltaY > this.tabHeight) {
+        wepy.setNavigationBarTitle({
+          title: this.tabData[this.currentTab]
+        });
+      } else {
+        wepy.setNavigationBarTitle({
+          title: '我的车票'
+        });
+      }
+    }
+
   }
 
 </script>
 
 <style lang='scss'>
+  .scroll {
+    position: relative;
+  }
+
   .card {
     border: 1px solid #EDEDED;
     position: relative;
@@ -178,7 +218,6 @@
       flex: 1;
       text-align: center
     }
-
   }
 
 </style>
